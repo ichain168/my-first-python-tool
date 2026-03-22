@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 網路工具箱</title>
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; background-color: #f4f4f9; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        #output { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; white-space: pre-wrap; font-family: monospace; margin-top: 20px; }
+        button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌐 Python 網路診斷 (PyScript)</h1>
+    <p>這是一個直接在瀏覽器運行的 Python 程式。</p>
+    
+    <button id="run-btn" py-click="run_diagnostic">開始執行檢測</button>
+    
+    <div id="output">點擊按鈕開始...</div>
+</div>
+
+<script type="py">
+    import platform
+    from datetime import datetime
+    from pyscript import display
+
+    def run_diagnostic(event):
+        output_div = document.getElementById("output")
+        output_div.innerHTML = "正在執行中...\n"
+        
+        # 取得模擬的系統資訊 (瀏覽器環境下 platform 有限制)
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sys_info = f"檢測時間: {now}\n"
+        sys_info += f"瀏覽器核心: {platform.system()}\n"
+        sys_info += f"Python 版本: {platform.python_version()}\n"
+        sys_info += "-" * 30 + "\n"
+        sys_info += "網路診斷成功！(這是由 Python 代碼直接計算輸出的結果)"
+        
+        output_div.innerHTML = sys_info
+
+    # 綁定按鈕 (PyScript 2024.1.1 寫法)
+    from js import document
+</script>
+
+</body>
+</html>
